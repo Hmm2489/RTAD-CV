@@ -1,0 +1,8 @@
+opencv-python>=4.9
+mediapipe>=0.10.30,<1.0   # 1.0.x SIGKILLs on FaceLandmarker init on this machine
+numpy>=1.26
+scikit-learn>=1.4
+pandas>=2.2
+joblib>=1.3
+pyyaml>=6.0
+pytest>=8.0

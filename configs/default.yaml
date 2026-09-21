@@ -1,0 +1,34 @@
+camera:
+  index: 0
+  width: 640
+  height: 480
+  fps: 30
+
+face_mesh:
+  model_path: models/face_landmarker.task   # fetch with scripts/download_model.py
+  num_faces: 1
+  min_face_detection_confidence: 0.5
+  min_face_presence_confidence: 0.5
+  min_tracking_confidence: 0.5
+
+features:
+  window_seconds: 3.0           # rolling window for PERCLOS / blink rate
+
+thresholds:                     # rule-based baseline; tune on benchmark data
+  ear_closed: 0.21              # eye aspect ratio below this = eye closed
+  perclos_drowsy: 0.30          # fraction of window with eyes closed
+  mar_yawn: 0.60
+  yaw_deg: 25.0                 # |head yaw| above this = looking away
+  pitch_deg: 20.0
+  gaze_offset: 0.25             # iris offset from eye centre (normalised)
+
+classifier:
+  type: rules                   # rules | ml
+  model_path: models/classifier.joblib
+
+smoothing:
+  ema_alpha: 0.3
+  min_state_frames: 10          # hysteresis: frames before switching state
+
+logging:
+  csv_path: results/live_log.csv
